@@ -1,0 +1,73 @@
+name: SkillExchange AI — CI/CD Pipeline & Automated Testing
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  # 🌐 1. Web Application Lint & Build Action
+  web-pipeline:
+    name: Web Frontend Build & Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Frontend Dependencies
+        run: npm ci
+
+      - name: Build Web Application (Vite)
+        run: npm run build
+
+  # 📱 2. Android Mobile Application Verification Action
+  mobile-pipeline:
+    name: Android App Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Check Gradle Wrapper & Android Configuration
+        working-directory: './Android app'
+        run: |
+          chmod +x gradlew
+          ./gradlew --version
+
+  # ⚡ 3. Unified End-to-End & Baseline Load Testing Action
+  unified-testing-pipeline:
+    name: Run All E2E & Baseline Load Test Actions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Execute Unified Test Suite (Web, Appium, Load 100 VUs)
+        working-directory: './tests'
+        run: node run-all-tests.js
+
+      - name: Upload Excel Test Analysis Reports Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Excel-Analysis-Reports
+          path: tests/reports/*.xlsx
+          retention-days: 14
