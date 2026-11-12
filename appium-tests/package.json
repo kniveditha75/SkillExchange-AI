@@ -1,0 +1,32 @@
+{
+  "name": "skillexchange-appium-tests",
+  "version": "1.0.0",
+  "description": "Comprehensive Appium UiAutomator2 Mobile E2E Test Suite with Excel Analysis Reporter for SkillExchange AI Android App",
+  "main": "run-appium-tests.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node run-appium-tests.js",
+    "test:appium": "npx mocha tests/*.test.js --timeout 60000",
+    "test:mock": "node run-appium-tests.js --mock",
+    "report": "node run-appium-tests.js --generate-report"
+  },
+  "keywords": [
+    "appium",
+    "android",
+    "uiautomator2",
+    "mobile",
+    "e2e-testing",
+    "excel-report",
+    "mocha"
+  ],
+  "author": "SkillExchange AI Mobile QA Team",
+  "license": "ISC",
+  "dependencies": {
+    "webdriverio": "^8.36.1",
+    "appium": "^2.11.3",
+    "mocha": "^11.1.0",
+    "chai": "^4.5.0",
+    "exceljs": "^4.4.0"
+  }
+}
+

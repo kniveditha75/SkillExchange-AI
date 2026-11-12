@@ -1,0 +1,25 @@
+{
+  "name": "skillexchange-load-tests",
+  "version": "1.0.0",
+  "description": "Baseline & Load Testing Suite for SkillExchange AI Backend (100 Virtual Users for 1 Minute)",
+  "main": "run-load-test.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node run-load-test.js",
+    "test:quick": "node run-load-test.js --duration 5",
+    "test:full": "node run-load-test.js --duration 60",
+    "report": "node run-load-test.js --generate-report"
+  },
+  "keywords": [
+    "load-testing",
+    "baseline-testing",
+    "rps",
+    "latency",
+    "100-users",
+    "performance",
+    "excel-report"
+  ],
+  "author": "SkillExchange AI Performance Engineering Team",
+  "license": "ISC"
+}
+

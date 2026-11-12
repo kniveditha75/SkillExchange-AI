@@ -1,0 +1,32 @@
+{
+  "name": "skillexchange-selenium-tests",
+  "version": "1.0.0",
+  "description": "Comprehensive Selenium WebDriver E2E Test Suite with Excel Analysis Reporter for SkillExchange AI Web App",
+  "main": "run-tests.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node run-tests.js",
+    "test:mocha": "npx mocha tests/login-tests.js --timeout 30000",
+    "test:dry": "node run-tests.js --dry-run",
+    "report": "node run-tests.js --generate-report"
+  },
+  "keywords": [
+    "selenium",
+    "webdriver",
+    "e2e",
+    "testing",
+    "excel-report",
+    "mocha",
+    "chai"
+  ],
+  "author": "SkillExchange AI QA Team",
+  "license": "ISC",
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "selenium-webdriver": "^4.27.0",
+    "chromedriver": "^132.0.0",
+    "mocha": "^11.1.0",
+    "chai": "^4.5.0"
+  }
+}
+
